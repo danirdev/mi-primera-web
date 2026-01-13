@@ -1,0 +1,80 @@
+/* Esto es un comentario en CSS:
+    1. Vamos a quitar la letra fea por defecto */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Un gris muy clarito */
+    display: flex;
+    justify-content: center;
+}
+
+/* 2. Vamos a estilizar tu caja "div" principal 
+    El signo # se usa para seleccionar IDs */
+#perfil {
+    background-color: white;
+    width: 400px; /* Ancho fijo */
+    padding: 20px; /* Espacio interior para que el texto no toque los bordes */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Una sombra sutil 3D */
+    text-align: center; /* Centrar todo el texto */
+}
+
+img {
+    width: 150px;       /* Tamaño fijo */
+    height: 150px;      /* Cuadrada */
+    object-fit: cover;  /* Para que la foto no se deforme si no es cuadrada */
+    border-radius: 50%; /* Círculo perfecto */
+    border: 4px solid #3498db; /* Un borde azul elegante */
+    margin-bottom: 20px; /* Separación con el texto de abajo */
+}
+
+/* 3. Maquillamos el título */
+h1 {
+    color: #2c3e50; /* Un azul oscuro elegante */
+    font-size: 24px;
+}
+
+/* 4. Cambiamos el color de los enlaces */
+a {
+    text-decoration: none; /* Quitamos el subrayado típico */
+    background-color: #3498db; /* Botón azul */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block; /* Para que respete el padding */
+}
+
+/* 5. Un truco para cuando pasas el mouse por encima */
+a:hover {
+    background-color: #2980b9; /* Azul más oscuro al tocar */
+}
+
+/* 1. Convertimos la lista (el padre) en una caja flexible */
+ul {
+    display: flex;           /* ¡Magia! Los hijos se ponen lado a lado */
+    justify-content: center; /* Los centramos horizontalmente */
+    list-style: none;        /* Quitamos los puntitos feos */
+    padding: 0;              /* Quitamos el relleno por defecto de la lista */
+    gap: 10px;               /* Espacio de 10px entre cada hobby */
+    flex-wrap: wrap;         /* Si no caben en una línea, que bajen a la siguiente */
+}
+
+/* 2. Estilizamos cada Hobby (los hijos) para que parezcan botones/etiquetas */
+ul li {
+    background-color: #e1ecf4; /* Fondo azul muy pálido */
+    color: #39739d;            /* Texto azul */
+    padding: 5px 15px;         /* Un poco de aire interno */
+    border-radius: 20px;       /* Bordes muy redondeados (Pill shape) */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+button {
+margin-top: 20px;
+padding: 10px 20px;
+cursor: pointer; /* Que salga la manito al pasar el mouse */
+background-color: #e74c3c;
+color: white;
+border: none;
+border-radius: 5px;
+font-size: 14px;
+}
