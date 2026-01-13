@@ -68,3 +68,47 @@ btnAgregar.addEventListener('click', function() {
     // D. Limpiamos el input
     inputHobby.value = "";
 });
+
+// ==============================
+// FUNCIONALIDAD: CONECTAR CON GITHUB
+// ==============================
+
+async function cargarPerfilGithub() {
+    // 1. Definimos a quién vamos a llamar (Endpoint)
+    // CAMBIA "TU_USUARIO_GITHUB" POR TU NOMBRE DE USUARIO REAL (sin comillas extra)
+    const usuario = 'danirdev'; 
+    const url = `https://api.github.com/users/${usuario}`;
+
+    try {
+        // 2. Hacemos la llamada (Fetch)
+        console.log("Llamando a GitHub...");
+        const respuesta = await fetch(url);
+
+        // 3. Convertimos la respuesta extraña en JSON (Objetos que JS entiende)
+        const datos = await respuesta.json();
+        
+        console.log("Datos recibidos:", datos); // ¡Mira esto en la consola!
+
+        // 4. Actualizamos el HTML con los datos reales
+        const titulo = document.getElementById('titulo-nombre');
+        const imagen = document.getElementById('foto-perfil');
+        const bio = document.getElementById('bio-perfil');
+
+        // Usamos los datos que nos dio GitHub
+        // "name", "avatar_url" y "bio" son nombres que GitHub usa en su base de datos
+        if (datos.name) {
+            titulo.innerText = datos.name;
+        } else {
+            titulo.innerText = datos.login; // Si no tienes nombre configurado, usa el usuario
+        }
+        
+        imagen.src = datos.avatar_url;
+        bio.innerText = datos.bio || "Este usuario no tiene biografía :(";
+
+    } catch (error) {
+        console.log("Hubo un error al conectar:", error);
+    }
+}
+
+// 5. Ejecutamos la función apenas carga la página
+cargarPerfilGithub();
