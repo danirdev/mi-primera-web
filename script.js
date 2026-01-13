@@ -22,35 +22,49 @@ miBoton.addEventListener('click', function() {
 });
 
 // ==============================
-// FUNCIONALIDAD: AGREGAR HOBBIES
+// FUNCIONALIDAD: LISTA DE HOBBIES (CON MEMORIA)
 // ==============================
 
-// 1. Seleccionamos los elementos que vamos a usar
 const inputHobby = document.getElementById('input-hobby');
 const btnAgregar = document.getElementById('btn-agregar');
 const listaHobbies = document.getElementById('lista-hobbies');
 
-// 2. Escuchamos el click del botón "Agregar"
-btnAgregar.addEventListener('click', function() {
+// 1. Cargar datos del almacenamiento al iniciar
+// Intentamos leer si hay algo guardado. Si no hay nada, usamos un array vacío []
+let misHobbies = JSON.parse(localStorage.getItem('hobbies')) || [];
+
+// Esta función dibuja la lista en la pantalla basándose en el array
+function renderizarLista() {
+    listaHobbies.innerHTML = ''; // Limpiamos la lista visual para no repetir
     
-    // a. Obtenemos lo que escribió el usuario
+    // Recorremos el array y creamos un <li> por cada hobby
+    misHobbies.forEach(function(hobby) {
+        const nuevoLi = document.createElement('li');
+        nuevoLi.innerText = hobby;
+        listaHobbies.appendChild(nuevoLi);
+    });
+}
+
+// Llamamos a la función al principio para que muestre lo que había guardado
+renderizarLista();
+
+
+// 2. Escuchar el click para agregar nuevos
+btnAgregar.addEventListener('click', function() {
     const texto = inputHobby.value;
 
-    // VALIDACIÓN: Si está vacío, no hacemos nada (para no agregar hobbies invisibles)
-    if (texto === "") {
-        alert("¡Por favor escribe algo!");
-        return; // El return detiene la función aquí
-    }
+    if (texto === "") return;
 
-    // b. Creamos un nuevo elemento <li> de la nada (virtualmente)
-    const nuevoLi = document.createElement('li');
-    
-    // c. Le ponemos el texto adentro
-    nuevoLi.innerText = texto;
+    // A. Agregamos el dato al Array (memoria RAM)
+    misHobbies.push(texto);
 
-    // d. IMPORTANTE: Agregamos el nuevo <li> a la lista real (<ul>)
-    listaHobbies.appendChild(nuevoLi);
+    // B. Guardamos el Array actualizado en localStorage (Disco Duro)
+    // JSON.stringify convierte el array en texto plano para poder guardarlo
+    localStorage.setItem('hobbies', JSON.stringify(misHobbies));
 
-    // e. Limpiamos la caja de texto para escribir otro
+    // C. Volvemos a dibujar la lista actualizada
+    renderizarLista();
+
+    // D. Limpiamos el input
     inputHobby.value = "";
 });
