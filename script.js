@@ -20,3 +20,37 @@ miBoton.addEventListener('click', function() {
     }
     
 });
+
+// ==============================
+// FUNCIONALIDAD: AGREGAR HOBBIES
+// ==============================
+
+// 1. Seleccionamos los elementos que vamos a usar
+const inputHobby = document.getElementById('input-hobby');
+const btnAgregar = document.getElementById('btn-agregar');
+const listaHobbies = document.getElementById('lista-hobbies');
+
+// 2. Escuchamos el click del botón "Agregar"
+btnAgregar.addEventListener('click', function() {
+    
+    // a. Obtenemos lo que escribió el usuario
+    const texto = inputHobby.value;
+
+    // VALIDACIÓN: Si está vacío, no hacemos nada (para no agregar hobbies invisibles)
+    if (texto === "") {
+        alert("¡Por favor escribe algo!");
+        return; // El return detiene la función aquí
+    }
+
+    // b. Creamos un nuevo elemento <li> de la nada (virtualmente)
+    const nuevoLi = document.createElement('li');
+    
+    // c. Le ponemos el texto adentro
+    nuevoLi.innerText = texto;
+
+    // d. IMPORTANTE: Agregamos el nuevo <li> a la lista real (<ul>)
+    listaHobbies.appendChild(nuevoLi);
+
+    // e. Limpiamos la caja de texto para escribir otro
+    inputHobby.value = "";
+});
