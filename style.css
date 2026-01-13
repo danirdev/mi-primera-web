@@ -78,3 +78,40 @@ border: none;
 border-radius: 5px;
 font-size: 14px;
 }
+
+/* =========================================
+   RESPONSIVE DESIGN (Solo para celulares)
+   ========================================= */
+
+/* Esta regla se activa SOLO si la pantalla mide 600px o menos */
+@media (max-width: 600px) {
+    
+    body {
+        /* Quitamos el centrado vertical en móviles para que sea más natural hacer scroll */
+        align-items: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #perfil {
+        /* Cambiamos el ancho fijo (400px) por uno fluido */
+        width: 90%; 
+        /* Le damos un ancho máximo para que no se estire demasiado */
+        max-width: 400px;
+    }
+
+    h1 {
+        font-size: 20px; /* Letra un poco más chica */
+    }
+    
+    /* Hacemos que los hobbies ocupen todo el ancho en celular */
+    ul {
+        flex-direction: column; /* Ponerlos uno debajo del otro en vez de al lado */
+        align-items: center;
+    }
+    
+    ul li {
+        width: 100%; /* Que el botón ocupe todo el ancho */
+        box-sizing: border-box; /* Para que el padding no rompa el ancho */
+    }
+}
